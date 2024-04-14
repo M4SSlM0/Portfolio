@@ -1,0 +1,62 @@
+[]<- da iniziare
+[*]<- da finire
+[x]<- Finito
+{...}<- se avanza tempo alla fine
+#E<-Ermacora
+#S->Saglimbeni
+
+
+[x]Suddivisione compiti
+[]DB                                    #S
+ [x]Progettazione
+ []Realizzazione
+[]sito
+ []Interfaccia sito                 #E  #S
+  []Pagina login
+  []Pagina regisrtrazione
+  []Home
+  []Pagina profilo
+  []Pagina progetti personali
+  []Pagina modifica progetto
+  []Pagina progetti pubblici
+  []Pagina solo admin
+ []Login                            #E
+  []Email e password
+  []Messaggi input errati
+ []Logout
+  []Modale conferma
+ []Registrazione                    #E
+  []Email
+  []Password
+  []Conferma password
+  []Nome utente
+ []Profilo personale                    #S
+  []Pfp(opzionale)
+  []Modifica nome utente
+  []Cambia password
+  []Statistiche
+   {[]Contatore ore}
+   []Numero progetti
+   []Percentuali x tipo progetto
+   []Percentuali x stato progetto
+  []Numero avvisi
+ {[]Profilo altro utente}
+ []Progetti Personali               #E
+  []Ricerca per tipo e descrizione
+  []Visualizazione progetto
+   []Aggiorna progetto
+   []Elimina progetto
+  []Crea nuovo progetto
+ []Progetti Pubblici                #E
+  []Ricerca per tipo, descrizione, utente {e like}
+  []Visualiza progetto
+   []Like
+   []Commenti
+   []Elimina(solo admin)
+ []Visualizza utenti (solo admin)       #S
+  []Ricerca per nome, ban
+  []Avvisa utente(3 avvisi = Ban)
+  []Ban diretto
+  []Unban
+  []Promuovi admin
+  []Declassa admin

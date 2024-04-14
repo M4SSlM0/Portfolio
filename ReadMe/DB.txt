@@ -1,0 +1,6 @@
+Tabelle:
+    Utenti(ID, Email, PasswordMd5, NomeUtente, Segnalazioni, IsBan, TipoUtente Pfp(opzionale), ContatoreOreTotali);
+    Progetto(ID, FK_ID_Utente, FK_ID_Tipo, Descrizione, PercorsoImmagine, DataInizio, Status, DataFine(nullable), Visibilita, ContatoreOre)
+    Tipo(ID, Nome);
+    Commenti(ID, FK_ID_Utente, FK_ID_Progetto, Testo, Data);
+    Like(FK_ID_Utente, FK_ID_Progetto);

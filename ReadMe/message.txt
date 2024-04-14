@@ -1,0 +1,63 @@
+-> Utente
+	-> Email
+	-> Password
+	-> Utente
+	-> Administor (bool)
+
+
+-> Progetto Modellazione 3D
+	-> Tipo
+		->Illustrazione
+		->Icona
+		->Animazione
+		->Asset
+	-> Descrizione
+	-> Render (img)
+	-> Data di creazione
+	-> Status
+		->InCorso
+		->Finito
+		->InPausa
+		->Scartato
+	-> Data di chiusura
+	-> Visibilità
+		-> Pubblica
+		-> Privata
+	-> Ore di lavoro*
+
+Funzioni sito	
+	-> Login
+	-> Logout
+	-> Registrazione
+	
+	-> Profilo
+		-> Mostra Info		
+		-> Impostazioni
+			-> Username
+			-> PfP *
+		-> Statistiche
+			->Totale ore
+			->Percentuale progetti
+				->Per tipi
+				->Per Status
+				->Per tipi e status	
+			->Numero Segnalazioni
+
+	-> Visualizza Progetti Personali
+		-> Filtra per tipo, tag
+		-> Visualizza Progetto
+			-> Aggiorna Progetto
+		-> Cancella Progetto
+		-> Crea Progetto
+
+	-> Visualizza Progetti Pubblici (HOME)
+		-> Filtra per tipo, tag, utente
+		-> Metti MiPiace/Commenti *
+		-> Cancella Progetto (ADMIN)
+
+	-> Visualiza Utenti (ADMIN)
+		-> Filtra per nome, per ban
+		-> Segnala Utente (3 Segnalazioni = BAN)	
+		-> Banna Utente
+		-> Sbanna Utente
+		
