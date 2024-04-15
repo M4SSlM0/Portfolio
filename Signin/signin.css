@@ -106,6 +106,10 @@ body:not(.user-is-tabbing) textarea:focus {
   bottom: 52px;
 }
 
+.signin-input-container .signin-input.active ~ .signin-input-label {
+  bottom: 52px;
+}
+
 .signin-submit-button-container {
   display: flex;
   justify-content: center;

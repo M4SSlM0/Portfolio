@@ -79,5 +79,17 @@
       </div>
       <div class="signin-background gradient-custom"></div>
     </div>
+
+    <script>
+      var coll = document.getElementsByClassName("signin-input");
+      var i;
+
+      for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("change", function () {
+          if (this.value == "") this.classList.remove("active");
+          else this.classList.add("active");
+        });
+      }
+    </script>
   </body>
 </html>

@@ -73,37 +73,63 @@ body:not(.user-is-tabbing) textarea:focus {
 .login-input-container {
   margin-left: 96px;
   margin-right: 96px;
-  margin-bottom: 16px;
 }
 
 .login-input {
   width: 448px;
   margin-bottom: 4px;
-  padding: 4px;
-  border: solid 1px var(--color-2);
+  padding: 8px;
+  border: solid 2px var(--color-2);
   border-radius: 8px;
   font-size: 24px;
   transition: all 0.2s ease-out;
   background: var(--background);
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--color-2);
+}
+
+.login-input.error {
+  border-color: var(--error-color-1);
 }
 
 .login-input:focus {
   border-color: var(--color-3);
 }
 
+.login-input-error {
+  position: relative;
+  height: 16px;
+  display: flex;
+  bottom: 20px;
+  left: 8px;
+  color: var(--error-color-1);
+  font-size: 16px;
+  font-weight: bolder;
+}
+
 .login-input-container .login-input ~ .login-input-label {
   position: relative;
   left: 10px;
-  bottom: 32px;
+  bottom: 35px;
   padding-left: 4px;
   padding-right: 4px;
   transition: all 0.2s ease-out;
   color: var(--color-2);
   background: var(--background);
 }
+
+.login-input.error ~ .login-input-label {
+  color: var(--error-color-1);
+}
+
+.login-input-container .login-input.active ~ .login-input-label {
+  bottom: 58px;
+}
+
 .login-input-container .login-input:focus ~ .login-input-label {
   color: var(--color-3);
-  bottom: 52px;
+  bottom: 58px;
 }
 
 .login-submit-button-container {
