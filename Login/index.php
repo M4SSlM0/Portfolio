@@ -29,12 +29,13 @@
           <div class="login-input-container">
             <?php 
               if(!isset($_POST['email'])) $errorMessage="";
+              else if($_POST["email"]=="") $errorMessage="*Email cannot be empty";
               else if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) $errorMessage="*Invalid email";
               else {
                 $stmt=$conn->prepare("SELECT * FROM utenti WHERE Email = ?");
                 $stmt->bind_param("s",$_POST['email']);
                 $stmt->execute();
-                if(mysqli_num_rows($result=$stmt->get_result())!=1) $errorMessage="*Email not registrated";
+                if(mysqli_num_rows($result=$stmt->get_result())==0) $errorMessage="*Email not registrated";
                 else $isValid=true;
               }
             ?>
@@ -42,8 +43,9 @@
                 class="login-input <?= $errorMessage==""?"":"error" ?> <?= isset($_POST["email"])?"active":"" ?>"
                 id="login-input-email"
                 name="email"
-                value="<?= $_POST["email"] ?>"
+                value="<?php if(isset($_POST["email"])) echo $_POST["email"] ?>"
                 type="email"
+                maxlength="64"
                 required
               />
               <label class="login-input-label" for="login-input-email"
@@ -54,6 +56,7 @@
           <div class="login-input-container">
             <?php
               if(!isset($_POST['password'])) $errorMessage="";
+              else if($_POST["password"]=="") $errorMessage="*Password cannot be empty";
               else{
                 
                 if($isValid && (($result->fetch_assoc())['Password'] != md5($_POST['password']))) $errorMessage="*Wrong email or password";
@@ -68,6 +71,7 @@
               id="login-input-password"
               name="password"
               type="password"
+              maxlength="64"
               required
             />
             <label class="login-input-label" for="login-input-password"
