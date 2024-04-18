@@ -55,11 +55,11 @@
           </div>
           <div class="login-input-container">
             <?php
-              if(!isset($_POST['password'])) $errorMessage="";
+              $errorMessage="";
+              if(!isset($_POST["password"])) $errorMessage="";
               else if($_POST["password"]=="") $errorMessage="*Password cannot be empty";
-              else{
-                
-                if($isValid && (($result->fetch_assoc())['Password'] != md5($_POST['password']))) $errorMessage="*Wrong email or password";
+              else if($isValid){
+                if((($result->fetch_assoc())['Password'] != md5($_POST['password']))) $errorMessage="*Wrong email or password";
                 else{
                   header("Location: ../Home");
                   exit;
