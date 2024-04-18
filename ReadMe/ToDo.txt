@@ -12,24 +12,24 @@
  []Realizzazione
 []sito
  []Interfaccia sito                 #E  #S
-  []Pagina login
-  []Pagina regisrtrazione
-  []Home
-  []Pagina profilo
+  [x]Pagina login
+  [x]Pagina regisrtrazione
+  [x]navbar
+  [x]Pagina profilo
   []Pagina progetti personali
   []Pagina modifica progetto
   []Pagina progetti pubblici
   []Pagina solo admin
- []Login                            #E
-  []Email e password
-  []Messaggi input errati
+ [x]Login                            #E
+  [x]Email e password
+  [x]Messaggi input errati
  []Logout
   []Modale conferma
- []Registrazione                    #E
-  []Email
-  []Password
-  []Conferma password
-  []Nome utente
+ [x]Registrazione                    #E
+  [x]Email
+  [x]Password
+  [x]Conferma password
+  [x]Nome utente
  []Profilo personale                    #S
   []Pfp(opzionale)
   []Modifica nome utente
