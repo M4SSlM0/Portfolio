@@ -1,0 +1,80 @@
+<div class="profile-container">
+  <div class="profile-user">
+    <div class="profile-picture-container">Placeholder foto profilo</div>
+    <div class="profile-user-name">Nome utente</div>
+    <div class="profile-user-last-project-title">Last project</div>
+    <div class="profile-last-project-container">
+      <div class="profile-last-project">Placeholder last project</div>
+    </div>
+  </div>
+  <div class="profile-background"></div>
+  <div class="profile-statistics">
+    <div class="profile-statistics-title">Statistics</div>
+    <div class="profile-statistics-search-form">
+      <div>
+        <div class="profile-statistics-form-text">Projects state:</div>
+        <div class="custom-select">
+          <select name="projects-state" id="projects-state">
+            <option value="">In corso</option>
+            <option value="">In pausa</option>
+            <option value="">Finito</option>
+            <option value="">Scartato</option>
+            <option value="" selected>All</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <div class="profile-statistics-form-text">Projects type:</div>
+        <div class="custom-select">
+          <select name="projects-type" id="">
+            <option value="">Illustrazione</option>
+            <option value="">Icona</option>
+            <option value="">Animazione</option>
+            <option value="">Asset</option>
+            <option value="" selected>All</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="profile-statistics-result-container">
+      <div class="profile-statistics-result">
+        <div class="profile-statistics-result-components-container">
+          <div class="profile-statistics-result-component">999 Projects</div>
+          <div class="profile-statistics-result-component">9999 Hours</div>
+        </div>
+        <div class="profile-statistics-result-chart-container">
+          <canvas class="profile-statistics-result-chart" id="myChart"></canvas>
+          <script>
+            var xValues = ["In corso", "In pausa", "Finito", "Scartato"];
+            var yValues = [55, 49, 44, 24];
+            var barColors = ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9"];
+
+            new Chart("myChart", {
+              type: "pie",
+              data: {
+                labels: xValues,
+                datasets: [
+                  {
+                    backgroundColor: barColors,
+                    data: yValues,
+                  },
+                ],
+              },
+              options: {
+                title: {
+                  display: true,
+                  text: "",
+                },
+                legend: {
+                  labels: {
+                    fontColor: "white", //set your desired color
+                  },
+                },
+              },
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

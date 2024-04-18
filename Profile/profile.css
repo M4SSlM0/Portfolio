@@ -1,0 +1,233 @@
+.profile-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-user {
+  height: 100%;
+  width: 30%;
+  min-width: 27rem;
+  background: var(--background);
+  border-right: solid 3px var(--color-1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-picture-container {
+  cursor: pointer;
+  height: 13rem;
+  width: 13rem;
+  margin-top: 3.25rem;
+  border-radius: 6.5rem;
+  background: linear-gradient(
+    to right,
+    var(--gradient-custom-1),
+    var(--gradient-custom-2),
+    var(--gradient-custom-3),
+    var(--gradient-custom-4)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s;
+}
+
+.profile-picture-container:hover {
+  box-shadow: 0px 4px 20px var(--shadow-color-1);
+}
+
+.profile-user-name {
+  margin-top: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: var(--color-2);
+}
+
+.profile-user-last-project-title {
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: bolder;
+  color: var(--color-2);
+}
+
+.profile-last-project-container {
+  cursor: pointer;
+  height: 16.25rem;
+  width: 24.25rem;
+  margin-top: 1rem;
+  border-radius: 1.25rem;
+  background: linear-gradient(
+    to right,
+    var(--gradient-custom-1),
+    var(--gradient-custom-2),
+    var(--gradient-custom-3),
+    var(--gradient-custom-4)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s;
+}
+
+.profile-last-project-container:hover {
+  box-shadow: 0px 4px 20px var(--shadow-color-1);
+}
+
+.profile-last-project {
+  height: calc(16.25rem - 4px);
+  width: calc(24.25rem - 4px);
+  border-radius: 24px;
+  background: var(--background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-background {
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(
+    to right,
+    var(--gradient-custom-1),
+    var(--gradient-custom-2),
+    var(--gradient-custom-3),
+    var(--gradient-custom-4)
+  );
+}
+
+.profile-statistics {
+  height: 100%;
+  width: 30%;
+  min-width: 27rem;
+  background: var(--background);
+  border-left: solid 3px var(--color-1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-statistics-title {
+  margin-top: 2.5rem;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: var(--color-2);
+}
+
+.profile-statistics-search-form {
+  width: 17.5rem;
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.profile-statistics-form-text {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  font-weight: bolder;
+  color: var(--text-color-2);
+}
+
+.custom-select {
+  min-width: 7.5rem;
+  position: relative;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.675em 1.5em 0.675em 1em;
+  background: var(--color-2);
+  border: 1px solid var(--color-2);
+  border-radius: 0.25rem;
+  color: #000;
+  cursor: pointer;
+}
+
+.custom-select::before,
+.custom-select::after {
+  --size: 0.3rem;
+  content: "";
+  position: absolute;
+  right: 1rem;
+  pointer-events: none;
+}
+
+.custom-select::before {
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-bottom: var(--size) solid black;
+  top: 40%;
+}
+
+.custom-select::after {
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-top: var(--size) solid black;
+  top: 55%;
+}
+
+.profile-statistics-result-container {
+  height: 27.75rem;
+  width: 24.25rem;
+  margin-top: 2.5rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(
+    to right,
+    var(--gradient-custom-1),
+    var(--gradient-custom-2),
+    var(--gradient-custom-3),
+    var(--gradient-custom-4)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-statistics-result {
+  overflow-x: hidden;
+  height: calc(27.75rem - 4px);
+  width: calc(24.25rem - 4px);
+  border-radius: 1.5rem;
+  background: var(--background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-statistics-result-components-container {
+  width: 80%;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.profile-statistics-result-component {
+  width: 8rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
+  font-weight: bolder;
+  color: var(--text-color-2);
+  border-radius: 0.75rem;
+  background: linear-gradient(
+    to right,
+    var(--gradient-custom-1),
+    var(--gradient-custom-2),
+    var(--gradient-custom-3),
+    var(--gradient-custom-4)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-statistics-result-chart-container {
+  width: 40rem;
+  margin-top: 2.5rem;
+}
