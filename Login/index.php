@@ -16,6 +16,8 @@
       $errorMessage="";
       $stmt;
       $result;
+
+      session_start(); //-----------------------------------------------------------------------------------------
     ?>
     <div class="container">
       <div class="login-form-container">
@@ -36,7 +38,11 @@
                 $stmt->bind_param("s",$_POST['email']);
                 $stmt->execute();
                 if(mysqli_num_rows($result=$stmt->get_result())==0) $errorMessage="*Email not registrated";
-                else $isValid=true;
+                else 
+                {
+                  $isValid=true; 
+                  $_SESSION["ses_mail"] = $_POST['email']; //------------------------------------------------------
+                }
               }
             ?>
               <input
