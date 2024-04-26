@@ -1,0 +1,26 @@
+<div class="custom-modal-container" id="custom-modal" style="display: flex">
+  <div class="custom-modal-body" id="custom-modal-body"></div>
+</div>
+<script>
+  var modal = document.getElementById("custom-modal");
+  var modalBody = document.getElementById("custom-modal-body");
+  const onClickOutside = (element, callback) => {
+    modal.addEventListener("click", (e) => {
+      if (!element.contains(e.target)) {
+        callback();
+        console.log("hide");
+      }
+    });
+  };
+  const showModal = (element, trigger) => {
+    element.addEventListener(trigger, () => {
+      if (modal.style.display == "none") {
+        modal.style.display = "flex";
+        console.log("show");
+      }
+    });
+  };
+  onClickOutside(modalBody, () => {
+    if (modal.style.display == "flex") modal.style.display = "none";
+  });
+</script>
