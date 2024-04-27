@@ -41,7 +41,6 @@
                 else 
                 {
                   $isValid=true; 
-                  $_SESSION["ses_mail"] = $_POST['email']; //------------------------------------------------------
                 }
               }
             ?>
@@ -67,6 +66,7 @@
               else if($isValid){
                 if((($result->fetch_assoc())['Password'] != md5($_POST['password']))) $errorMessage="*Wrong email or password";
                 else{
+                  $_SESSION["ses_mail"] = $_POST['email']; //------------------------------------------------------
                   header("Location: ../Home");
                   exit;
                 }
