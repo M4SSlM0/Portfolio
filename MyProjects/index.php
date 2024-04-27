@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-    <div style="display:flex;align-items:center;justify-content:center;"><button id="temp">FuckYouJs</button></div>
+    <div style="display:flex;align-items:center;justify-content:center;"><button id="new-project" hx-post="../Modals/modalNewProject.html" hx-trigger="click" hx-target="#custom-modal-body" hx-swap="innerHTML">+ New Project</button></div>
   </div>
   <div class="myProjects-background">
     <div class="myProjects-projects">
@@ -50,5 +50,5 @@
 </div>
 <?php include "../Modals/customModal.html" ?>
 <script>
-  showModal(document.getElementById("temp"), "click");
+  showModal(document.getElementById("new-project"), "click");
 </script>

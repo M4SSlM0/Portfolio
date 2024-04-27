@@ -92,9 +92,10 @@
 }
 
 .project-placeholder {
-  height: 185px;
-  width: 300px;
-  margin: 2.5%;
+  height: 288px;
+  width: 384px;
+  margin: 3%;
+  border-radius: 16px;
   background: var(--background);
 }
 
