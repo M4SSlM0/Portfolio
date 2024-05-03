@@ -12,6 +12,12 @@
       }
     });
   };
+  const closeModal = () => {
+    if (modal.style.display == "flex") {
+      modal.style.display = "none";
+      console.log("close");
+    }
+  };
   const showModal = (element, trigger) => {
     element.addEventListener(trigger, () => {
       if (modal.style.display == "none") {
@@ -20,7 +26,5 @@
       }
     });
   };
-  onClickOutside(modalBody, () => {
-    if (modal.style.display == "flex") modal.style.display = "none";
-  });
+  onClickOutside(modalBody, closeModal);
 </script>
