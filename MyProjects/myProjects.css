@@ -73,6 +73,7 @@
 
 .myProjects-background {
   height: 100%;
+  flex-grow: 1;
   background: linear-gradient(
     to right,
     var(--gradient-custom-1),
@@ -82,21 +83,37 @@
   );
 }
 
-.myProjects-projects {
-  width: 100%;
+.myProjects-results {
   height: 100%;
-  flex-grow: 1;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
   overflow-y: auto;
 }
 
 .project-placeholder {
+  cursor: pointer;
   height: 288px;
   width: 384px;
   margin: 3%;
   border-radius: 16px;
+  padding: 1rem;
   background: var(--background);
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: var(--text-color-1);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: var(--text-color-2);
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+}
+
+.project-placeholder:hover {
+  box-shadow: 0px 4px 20px var(--shadow-color-1);
 }
 
 .myProjects-background-footer {
