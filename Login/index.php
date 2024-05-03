@@ -64,9 +64,11 @@
               if(!isset($_POST["password"])) $errorMessage="";
               else if($_POST["password"]=="") $errorMessage="*Password cannot be empty";
               else if($isValid){
-                if((($result->fetch_assoc())['Password'] != md5($_POST['password']))) $errorMessage="*Wrong email or password";
+                if((($row = $result->fetch_assoc())['Password'] != md5($_POST['password']))) $errorMessage="*Wrong email or password";
                 else{
                   $_SESSION["ses_mail"] = $_POST['email']; //------------------------------------------------------
+                  $_SESSION["userID"]=$row["ID"];
+                  //var_dump($row["ID"]);
                   header("Location: ../Home");
                   exit;
                 }
