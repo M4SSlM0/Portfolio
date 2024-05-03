@@ -5,13 +5,20 @@
     <link rel="stylesheet" href="../Themes/theme-classic.css" />
     <link rel="stylesheet" href="../Profile/profile.css">
     <link rel="stylesheet" href="../MyProjects/myProjects.css">
-    <link rel="stylesheet" href="../Modals/customModal.css">
+    <link rel="stylesheet" href="../Modals/customModals.css">
     <script src="../HTMX/htmx.min.js"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     </script>
   </head>
   <body>
+    <?php
+      $dbHost = "localhost";
+      $dbUser = "root";
+      $dbPass = "";
+      $dbName = "3dprojectdb";
+      $conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
+    ?>
     <div class="home-container">
       <div class="home-navbar-container">
         <div class="home-navbar-collapse" id="collapse">
@@ -48,7 +55,7 @@
       </div>
       <div class="home-page">
         <!--               \/   sostituisci con il percorso della pagina su cui devi lavorare piu' avanti implementero' il funzionamento della barra di navigazione-->
-        <div hx-post="../Profile" hx-trigger="load" hx-swap="outerHTML" hx-target="this"></div>
+        <div hx-post="../MyProjects" hx-trigger="load" hx-swap="outerHTML" hx-target="this"></div>
       </div>
     </div>
 
