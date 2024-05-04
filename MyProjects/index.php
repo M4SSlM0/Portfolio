@@ -9,7 +9,7 @@
   <div class="myProjects-form-container">
     <div class="myProjects-search-form-container">
       <div class="myProjects-search-title">Search</div>
-      <div class="myProjects-search-form">
+      <div class="myProjects-search-form" hx-post="../MyProjects/search.php" hx-trigger="input" hx-target="#results" hx-swap="innerHTML" hx-include="#myProjects-search-type, #myProjects-search-description">
         <div class="myProjects-search-input-container">
           <div class="myProjects-input-label">Type</div>
           <div class="custom-select">
@@ -29,12 +29,15 @@
           <div class="myProjects-input-label">Description</div>
           <div>
             <input class="myProjects-search-input" type="text" name="search-description" id="myProjects-search-description" />
-            <button class="myProjects-search-submit" hx-post="../MyProjects/search.php" hx-trigger="click" hx-target="#results" hx-swap="innerHTML" hx-include="#myProjects-search-type, #myProjects-search-description">Search</button>
           </div>
         </div>
       </div>
     </div>
-    <div style="display:flex;align-items:center;justify-content:center;"><button id="new-project" hx-post="../Modals/modalNewProject.html" hx-trigger="click" hx-target="#custom-modal-body" hx-swap="innerHTML">+ New Project</button></div>
+    <div class="new-project-button-container">
+      <button class="new-project-button" id="new-project" hx-post="../Modals/modalNewProject.php" hx-trigger="click" hx-target="#custom-modal-body" hx-swap="innerHTML">
+        + New Project
+      </button>
+    </div>
   </div>
   <div class="myProjects-background">
     <div class="myProjects-results" id="results">

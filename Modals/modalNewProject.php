@@ -1,3 +1,10 @@
+<?php
+  $dbHost = "localhost";
+  $dbUser = "root";
+  $dbPass = "";
+  $dbName = "3dprojectdb";
+  $conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
+?>
 <div class="modal-container-outline">
   <div class="modal-container">
     <div class="modal-header">New Project</div>
@@ -16,10 +23,13 @@
           <div class="modal-label">Type:</div>
           <div class="custom-select">
             <select name="modal-new-type" id="modal-new-type">
-              <option value="1">Illustrazione</option>
-              <option value="">Icona</option>
-              <option value="">Animazione</option>
-              <option value="">Asset</option>
+              <?php
+                $results = $conn->query("SELECT * FROM tipi");
+                while($row = $results->fetch_array(MYSQLI_ASSOC)){?>
+                  <option value="<?= $row["ID"] ?>"><?= $row["Nome"] ?></option>
+                <?php
+                }
+              ?>
             </select>
           </div>
         </div>

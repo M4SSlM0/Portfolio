@@ -3,12 +3,14 @@
     session_start();
 
     //var_dump($_POST);
-
     $type = "default"; 
-    if(isset($_POST["search-type"])) $type = $_POST["search-type"];
     $description = "";
-    if(isset($_POST["search-description"]) && trim($_POST["search-description"]) != "") $description = trim($_POST["search-description"]);
-    if($type != "default" || $description != "") $_SESSION["myProjects-last-search"] = array("type" => $type, "description" => "%".$description."%");
+
+    if(!isset($_POST["load-page"])){
+        if(isset($_POST["search-type"])) $type = $_POST["search-type"];
+        if(isset($_POST["search-description"])) $description = trim($_POST["search-description"]);
+        $_SESSION["myProjects-last-search"] = array("type" => $type, "description" => "%".$description."%");
+    }
 
     //var_dump($type);
     //var_dump($description);
@@ -30,6 +32,7 @@
     if(isset($_SESSION["myProjects-last-search"])){
         $type = $_SESSION["myProjects-last-search"]["type"];
         $description = $_SESSION["myProjects-last-search"]["description"];
+        //var_dump($_SESSION["myProjects-last-search"]);
 
         if($type != "default" && $description != ""){
             $stmt = $conn->prepare("SELECT * FROM progetti WHERE FK_ID_Utente = ? AND FK_ID_Tipo = ? AND Descrizione LIKE ?");
@@ -43,6 +46,10 @@
             $stmt = $conn->prepare("SELECT * FROM progetti WHERE FK_ID_Utente = ? AND Descrizione LIKE ?");
             $stmt->bind_param("is", $userID, $description);   
         }
+        else if($type == "default" && $description == ""){
+            $stmt = $conn->prepare("SELECT * FROM progetti");
+            $stmt->bind_param();   
+        }
         $stmt->execute();
         $result=$stmt->get_result();
     }
@@ -51,7 +58,7 @@
     }
 
     $currentPage = 1;
-    $resultsPerPage = 2;
+    $resultsPerPage = 10;
     $rowCounter = mysqli_num_rows($result);
 
     //var_dump($rowCounter);
@@ -61,9 +68,11 @@
     if($rowCounter > 0){
 
         $rows = $result->fetch_all();
+        //var_dump($rowCounter);
         //var_dump($rows);
+        //var_dump(($currentPage - 1) * $resultsPerPage);
 
-        for ($i = ($currentPage - 1) * 2; $i < $resultsPerPage * $currentPage; $i++) { 
+        for ($i = ($currentPage - 1) * $resultsPerPage; $i < $resultsPerPage * $currentPage; $i++) { 
             //var_dump($i);
             if(!isset($rows[$i])) break;
             ?>
