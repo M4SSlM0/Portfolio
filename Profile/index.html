@@ -1,55 +1,110 @@
+
+
+
+<?php
+  session_start();
+
+  $dbHost = "localhost";
+  $dbUser = "root";
+  $dbPass = "";
+  $dbName = "3dprojectdb";
+  $conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
+
+  $sql_OttieniUsername = "SELECT NomeUtente, ImmagineProfilo FROM utenti WHERE email = '".$_SESSION["ses_mail"]."'";
+  $exe_OttieniUsername = $conn->query($sql_OttieniUsername);
+    
+  if($exe_OttieniUsername->num_rows > 0) {
+    $row = $exe_OttieniUsername->fetch_assoc();
+    $_SESSION["ses_user"] = $row["NomeUtente"]; 
+    $_SESSION["ses_pfp"] = $row["ImmagineProfilo"];
+  }
+?>
+
 <div class="profile-container">
   <div class="profile-user">
-    <div class="profile-picture-container">Placeholder foto profilo</div>
-    <div class="profile-user-name">Nome utente</div>
-    <div class="profile-user-last-project-title">Last project</div>
+    <div class="profile-picture-container:hover"><img class = 'profile-picture-container' src = '<?php echo $_SESSION["ses_pfp"];?>'></div>
+    <div class="profile-user-name"><?php echo $_SESSION["ses_user"]?></div>
+
+    <?php
+      //Trova Last Project
+      $sql_TrovaUltimoProgetto = "SELECT * FROM progetti 
+                                  JOIN utenti ON progetti.FK_ID_Utente = utenti.ID 
+                                  WHERE NomeUtente = ?
+                                  ORDER BY DataInizio DESC LIMIT 1"; //NO
+
+        $stmt = $conn->prepare($sql_TrovaUltimoProgetto);
+        $stmt->bind_param("s", $_SESSION["ses_user"]);
+        $stmt->execute();
+
+        $exe_TrovaUltimoProgetto = $stmt->get_result();
+
+        if($exe_TrovaUltimoProgetto->num_rows > 0) 
+        { 
+            while ($row = $exe_TrovaUltimoProgetto->fetch_assoc()) 
+            {
+                $UltimoProgetto_Nome = $row["Descrizione"];
+                $UltimoProgetto_Immagine = $row["Immagine"];
+            }
+        }  else {
+          echo "Non ci sono progetti ";
+       }
+    ?>
+    <div class="profile-user-last-project-title"><?php if (isset($UltimoProgetto_Nome))echo $UltimoProgetto_Nome;?></div>
     <div class="profile-last-project-container">
-      <div class="profile-last-project">Placeholder last project</div>
+      <div class="profile-last-project"><img class = "project-image"  src = "<?php  if (isset($UltimoProgetto_Nome)) echo $UltimoProgetto_Immagine?>"></div>
     </div>
   </div>
   <div class="profile-background"></div>
   <div class="profile-statistics">
     <div class="profile-statistics-title">Statistics</div>
-    <div class="profile-statistics-search-form">
+    <div class="profile-statistics-search-form" hx-trigger="input" hx-target="#chart-result" hx-swap="innerHTML" hx-post="../Profile/chart.php" hx-include="#project-type, #projects-state">
       <div>
         <div class="profile-statistics-form-text">Projects state:</div>
         <div class="custom-select">
+
+        <!-- <form action = "" method= "post"> -->
+
           <select name="projects-state" id="projects-state">
-            <option value="">In corso</option>
-            <option value="">In pausa</option>
-            <option value="">Finito</option>
-            <option value="">Scartato</option>
-            <option value="" selected>All</option>
+            <option value="InCorso">In corso</option>
+            <option value="InPausa">In pausa</option>
+            <option value="Finito">Finito</option>
+            <option value="Scartato">Scartato</option>
+            <option value="All" selected>All</option>
           </select>
         </div>
       </div>
       <div>
         <div class="profile-statistics-form-text">Projects type:</div>
         <div class="custom-select">
-          <select name="projects-type" id="">
-            <option value="">Illustrazione</option>
-            <option value="">Icona</option>
-            <option value="">Animazione</option>
-            <option value="">Asset</option>
-            <option value="" selected>All</option>
+          <select name="projects-type" id="project-type">
+            <option value="1">Illustrazione</option>
+            <option value="2">Icona</option>
+            <option value="3">Animazione</option>
+            <option value="4">Asset</option>
+            <option value="default" selected>All</option>
           </select>
         </div>
+
+        <!--</form>-->
+
       </div>
     </div>
+
+  
     <div class="profile-statistics-result-container">
-      <div class="profile-statistics-result">
+      <div id = "chart-result" class="profile-statistics-result">
         <div class="profile-statistics-result-components-container">
-          <div class="profile-statistics-result-component">999 Projects</div>
-          <div class="profile-statistics-result-component">9999 Hours</div>
+          <div class="profile-statistics-result-component"><?php echo 1?> Projects</div>
+          <div class="profile-statistics-result-component"><?php echo 1?> Hours</div>
         </div>
         <div class="profile-statistics-result-chart-container">
           <canvas class="profile-statistics-result-chart" id="myChart"></canvas>
           <script>
             var xValues = ["In corso", "In pausa", "Finito", "Scartato"];
-            var yValues = [55, 49, 44, 24];
+            var yValues = [<?php echo $NumeroInCorso ?>, <?php echo $NumeroInPausa ?>, <?php echo $NumeroScartati?>, <?php echo $NumeroFiniti ?>];
             var barColors = ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9"];
 
-            new Chart("myChart", {
+            new Chart("myChart", {ws
               type: "pie",
               data: {
                 labels: xValues,
@@ -72,9 +127,12 @@
                 },
               },
             });
+
+            //Per
           </script>
         </div>
       </div>
     </div>
   </div>
 </div>
+
