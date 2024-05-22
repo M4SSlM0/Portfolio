@@ -1,0 +1,35 @@
+.search-form-container {
+  width: 30vw;
+  border-right: solid 0.4vh var(--color-2);
+  background: var(--background);
+}
+
+.search-title {
+  margin-top: 4vh;
+  color: var(--text-color-2);
+}
+
+.search-form {
+  padding-bottom: 2vh;
+  border-bottom: solid 0.4vh var(--color-2);
+}
+
+.search-form-label {
+  margin-top: 3vh;
+  margin-bottom: 1vh;
+  color: var(--text-color-2);
+}
+
+.search-submit {
+  margin-top: 7vh;
+  padding: 1vh;
+  border-radius: 1.5vh;
+  color: var(--text-color-2);
+}
+
+.search-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  overflow-y: auto;
+}
