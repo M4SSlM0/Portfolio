@@ -65,7 +65,6 @@
   appearance: none;
   -webkit-appearance: none;
   width: 100%;
-  font-size: 1rem;
   padding: 0.675em 1.5em 0.675em 1em;
   background: var(--color-2);
   border: 1px solid var(--color-2);
@@ -105,7 +104,6 @@
 }
 
 .custom-input-text input {
-  font-size: 1rem;
   padding: 0.675em 1.5em 0.675em 1em;
   background: var(--color-2);
   border: 1px solid var(--color-2);
