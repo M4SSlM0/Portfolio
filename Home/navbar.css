@@ -1,0 +1,79 @@
+.navbar-container {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  transition: width 0.3s ease-in-out;
+}
+
+.navbar {
+  width: 0px;
+  background: var(--background);
+  overflow: hidden;
+  transition: width 0.3s ease-in-out;
+}
+
+.pfp {
+  height: 20vh;
+  width: 20vh;
+  margin-top: 3vh;
+  border-radius: 10vh;
+}
+
+.navbar-buttons-container {
+  margin-top: 6vh;
+}
+
+.navbar-button {
+  width: 75%;
+  padding: 1vh;
+  margin-top: 4vh;
+  border-radius: 2vh;
+  color: var(--text-color-2);
+}
+
+.logout-button {
+  width: 60%;
+  padding: 1vh;
+  margin-top: 16vh;
+  border: solid 0.3vh var(--color-2);
+  border-radius: 2vh;
+  color: var(--text-color-2);
+  background: var(--background);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.logout-button:hover {
+  background: var(--color-5);
+}
+
+.navbar-settings {
+  height: 10vh;
+  width: 10vh;
+  position: relative;
+  bottom: 87.5vh;
+  left: 2.5vh;
+}
+
+.border-top {
+  height: 15%;
+  width: 1.35vw;
+  border-left: solid 0.3vh var(--color-2);
+  background: transparent;
+}
+
+.collapse-button {
+  height: 8%;
+  width: 1.35vw;
+  border-top-right-radius: 2vh;
+  border-bottom-right-radius: 2vh;
+  border: solid 0.3vh var(--color-2);
+  color: var(--color-2);
+  border-left: none;
+  background: var(--background);
+}
+
+.border-bottom {
+  width: 1.35vw;
+  border-left: solid 0.3vh var(--color-2);
+  background: transparent;
+}

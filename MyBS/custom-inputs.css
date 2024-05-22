@@ -1,0 +1,135 @@
+.custom-input {
+  width: 75%;
+}
+
+.custom-input input {
+  height: 6vh;
+  width: 100%;
+  padding: 1.5vh;
+  border: solid 0.3vh var(--color-2);
+  border-radius: 2vh;
+  color: var(--text-color-2);
+  background: var(--background);
+  transition: ease-in-out 0.3s;
+}
+
+.custom-input.error input {
+  border-color: var(--error-color-1);
+}
+
+.custom-input input:focus-visible {
+  outline: none;
+  border-color: var(--color-3);
+}
+
+.custom-input label {
+  width: fit-content;
+  position: relative;
+  bottom: 5vh;
+  left: 4vh;
+  padding: 0.5vh;
+  background: var(--background);
+  color: var(--color-2);
+  transition: ease-in-out 0.3s;
+}
+
+.custom-input.error label {
+  color: var(--error-color-1);
+}
+
+.custom-input input:focus-visible ~ label {
+  bottom: 8vh;
+  color: var(--color-3);
+}
+
+.custom-input.active label {
+  bottom: 8vh;
+}
+
+.custom-input div {
+  height: 2vh;
+  position: relative;
+  bottom: 3vh;
+  left: 2.5vh;
+  color: var(--error-color-1);
+}
+
+/*----------------login-input----------------*/
+
+.custom-select {
+  min-width: 7.5rem;
+  position: relative;
+}
+
+.custom-select select {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.675em 1.5em 0.675em 1em;
+  background: var(--color-2);
+  border: 1px solid var(--color-2);
+  border-radius: 0.25rem;
+  color: var(--text-color-1);
+  cursor: pointer;
+}
+
+.custom-select::before,
+.custom-select::after {
+  --size: 0.3rem;
+  content: "";
+  position: absolute;
+  right: 1rem;
+  pointer-events: none;
+}
+
+.custom-select::before {
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-bottom: var(--size) solid black;
+  top: 40%;
+}
+
+.custom-select::after {
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-top: var(--size) solid black;
+  top: 55%;
+}
+
+/*----------------custom select----------------*/
+
+.custom-input-text {
+  min-width: 7.5rem;
+  position: relative;
+}
+
+.custom-input-text input {
+  font-size: 1rem;
+  padding: 0.675em 1.5em 0.675em 1em;
+  background: var(--color-2);
+  border: 1px solid var(--color-2);
+  border-radius: 0.25rem;
+  color: var(--text-color-1);
+  cursor: text;
+}
+
+/*----------------custom input text----------------*/
+
+.custom-input-number {
+  min-width: 7.5rem;
+  position: relative;
+}
+
+.custom-input-number input {
+  width: 8rem;
+  font-size: 1rem;
+  padding: 0.675em 1.5em 0.675em 1em;
+  background: var(--color-2);
+  border: 1px solid var(--color-2);
+  border-radius: 0.25rem;
+  color: var(--text-color-1);
+  cursor: text;
+}
+
+/*----------------custom input number----------------*/

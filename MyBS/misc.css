@@ -1,0 +1,124 @@
+.gradient {
+  /* fallback for old browsers */
+  background: #fccb90;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right,
+    var(--gradient-custom-1),
+    var(--gradient-custom-2),
+    var(--gradient-custom-3),
+    var(--gradient-custom-4)
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(
+    to right,
+    var(--gradient-custom-1),
+    var(--gradient-custom-2),
+    var(--gradient-custom-3),
+    var(--gradient-custom-4)
+  );
+}
+
+/*---------------color---------------*/
+
+* {
+  padding: 0px;
+  border: 0px;
+  margin: 0px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.fill {
+  height: 100%;
+  width: 100%;
+}
+
+.fillX {
+  width: 100%;
+}
+
+.fillY {
+  height: 100%;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+/*---------------position---------------*/
+
+.textHuge {
+  font-size: 7vh;
+  font-weight: bolder;
+}
+
+.textBig {
+  font-size: 4vh;
+  font-weight: bolder;
+}
+
+.text {
+  font-size: 3vh;
+  font-weight: bolder;
+}
+
+.textSmall {
+  font-size: 2.5vh;
+  font-weight: bolder;
+}
+
+.textTiny {
+  font-size: 2vh;
+  font-weight: bolder;
+}
+
+/*---------------text---------------*/
+
+.notSelect {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+body:not(.user-is-tabbing) button:focus,
+body:not(.user-is-tabbing) input:focus,
+body:not(.user-is-tabbing) select:focus,
+body:not(.user-is-tabbing) textarea:focus {
+  outline: none;
+}
+
+/*---------------other---------------*/
+
+.pointer {
+  cursor: pointer;
+}
+
+.button {
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.button:hover {
+  box-shadow: 0px 4px 16px darkslategray;
+}

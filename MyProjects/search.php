@@ -76,7 +76,10 @@
             //var_dump($i);
             if(!isset($rows[$i])) break;
             ?>
-                <div class="project-placeholder" style="background-image: url(<?= $rows[$i][4] ?>)"><?= $rows[$i][3] ?></div>
+                <button class="button project" style="background-image: url(<?= $rows[$i][4] ?>)" hx-post="../Modals/showProject.php" hx-trigger="click" hx-target="#modal" hx-swap="innerHTML" hx-include="#project-id-<?= $rows[$i][0] ?>"><?= $rows[$i][3] ?>
+                    <input type="hidden" id="project-id-<?= $rows[$i][0] ?>" name="project-id" value="<?= $rows[$i][0] ?>" />
+                </button>
+
             <?php
         }
         //var_dump($rowCounter);
@@ -98,3 +101,10 @@
     }
 
 ?>
+<script>
+    var projects = document.getElementsByClassName("project");
+    console.log(projects);
+    for (let i = 0; i < projects.length; i++) {
+        showModal(projects[i], "click");
+    }
+</script>

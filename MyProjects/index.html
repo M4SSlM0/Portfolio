@@ -1,0 +1,57 @@
+<div class="fill row">
+  <div class="fillY column myProjects-form-container">
+    <div class="fillX column myProjects-form">
+      <div class="fillX center textBig myProjects-form-title">My projects</div>
+      <div
+        class="fillX row center"
+        hx-post="../MyProjects/search.php"
+        hx-trigger="load, input"
+        hx-target="#result"
+        hx-swap="innerHTML"
+        hx-include="#search-type, #search-description"
+      >
+        <div class="column myProjects-form-input">
+          <div class="center text myProjects-form-label">Type:</div>
+          <div class="text custom-select">
+            <select name="search-type" id="search-type">
+              <option value="1">Illustrazione</option>
+              <option value="2">Icona</option>
+              <option value="3">Animazione</option>
+              <option value="4">Asset</option>
+              <option value="default" selected>All</option>
+            </select>
+          </div>
+        </div>
+        <div class="column myProjects-form-input">
+          <div class="center text myProjects-form-label">Description:</div>
+          <div class="text custom-input-text">
+            <input
+              type="text"
+              name="search-description"
+              id="search-description"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fillX center">
+      <button
+        class="center text gradient button myProjects-new-button"
+        id="new-modal"
+        hx-post="../Modals/newProject.php"
+        hx-trigger="click"
+        hx-target="#modal"
+        hx-swap="innerHTML"
+      >
+        + New project
+      </button>
+    </div>
+  </div>
+  <div class="grow gradient">
+    <div class="fill row myprojects-result" id="result"></div>
+  </div>
+
+  <script>
+    showModal(document.getElementById("new-modal"), "click");
+  </script>
+</div>

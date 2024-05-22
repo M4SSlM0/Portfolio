@@ -1,11 +1,12 @@
 <html>
   <head>
-    <title>3DProject</title>
+    <link rel="stylesheet" href="../Themes/theme.css" />
     <link rel="stylesheet" href="./login.css" />
-    <link rel="stylesheet" href="../Themes/theme-classic.css" />
+    <link rel="stylesheet" href="../MyBS/misc.css" />
+    <link rel="stylesheet" href="../MyBS/custom-inputs.css" />
   </head>
-  <body>
-    <?php
+  <body class="notSelect">
+     <?php
       $dbHost = "localhost";
       $dbUser = "root";
       $dbPass = "";
@@ -17,56 +18,45 @@
       $stmt;
       $result;
 
-      session_start(); //-----------------------------------------------------------------------------------------
+      session_start();
+
+      if(isset($_SESSION["userID"])) header("location: ../Home");
     ?>
-    <div class="container">
-      <div class="login-form-container">
-        <form class="login-form" method="post" action="./">
-          <div class="login-form-logo-container">
-            <div class="login-form-logo">Placeholder logo</div>
-          </div>
-          <div class="login-title-container">
-            <div class="login-title">Login</div>
-          </div>
-          <div class="login-input-container">
-            <?php 
-              if(!isset($_POST['email'])) $errorMessage="";
-              else if($_POST["email"]=="") $errorMessage="*Email cannot be empty";
-              else if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) $errorMessage="*Invalid email";
-              else {
-                $stmt=$conn->prepare("SELECT * FROM utenti WHERE Email = ?");
-                $stmt->bind_param("s",$_POST['email']);
-                $stmt->execute();
-                if(mysqli_num_rows($result=$stmt->get_result())==0) $errorMessage="*Email not registrated";
-                else 
-                {
-                  $isValid=true; 
-                }
+    <div class="row fill">
+      <div class="fillY column background">
+        <div class="center fillX">
+          <div class="center gradient logo">Placeholder logo</div>
+        </div>
+        <div class="center fillX textHuge title">Login</div>
+        <form class="column fillX center login-form" action="" method="post">
+          <?php 
+            if(!isset($_POST['email'])) $errorMessage="";
+            else if($_POST["email"]=="") $errorMessage="*Email cannot be empty";
+            else if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) $errorMessage="*Invalid email";
+            else {
+              $stmt=$conn->prepare("SELECT * FROM utenti WHERE Email = ?");
+              $stmt->bind_param("s",$_POST['email']);
+              $stmt->execute();
+              if(mysqli_num_rows($result=$stmt->get_result())==0) $errorMessage="*Email not registrated";
+              else 
+              {
+                $isValid=true; 
               }
-            ?>
-              <input
-                class="login-input <?= $errorMessage==""?"":"error" ?> <?= isset($_POST["email"])?"active":"" ?>"
-                id="login-input-email"
-                name="email"
-                value="<?php if(isset($_POST["email"])) echo $_POST["email"] ?>"
-                type="email"
-                maxlength="64"
-                required
-              />
-              <label class="login-input-label" for="login-input-email"
-                >Email</label
-              >
-              <div class="login-input-error"><?= $errorMessage ?></div>
+            }
+          ?>
+          <div class="column custom-input <?= $errorMessage==""?"":"error" ?> <?= isset($_POST["email"])?"active":"" ?>">
+            <input class="text" name="email" type="email" maxlength="64" value="<?php if(isset($_POST["email"])) echo $_POST["email"] ?>" required/>
+            <label class="center">Email:</label>
+            <div><?= $errorMessage ?></div>
           </div>
-          <div class="login-input-container">
-            <?php
+          <?php
               $errorMessage="";
               if(!isset($_POST["password"])) $errorMessage="";
               else if($_POST["password"]=="") $errorMessage="*Password cannot be empty";
               else if($isValid){
                 if((($row = $result->fetch_assoc())['Password'] != md5($_POST['password']))) $errorMessage="*Wrong email or password";
                 else{
-                  $_SESSION["ses_mail"] = $_POST['email']; //------------------------------------------------------
+                  $_SESSION["ses_mail"] = $_POST['email'];
                   $_SESSION["userID"]=$row["ID"];
                   //var_dump($row["ID"]);
                   header("Location: ../Home");
@@ -74,44 +64,36 @@
                 }
               } 
             ?>
-            <input
-              class="login-input <?= $errorMessage==""?"":"error" ?>"
-              id="login-input-password"
-              name="password"
-              type="password"
-              maxlength="64"
-              required
-            />
-            <label class="login-input-label" for="login-input-password"
-              >Password</label
-            >
-            <div class="login-input-error"><?= $errorMessage ?></div>
+          <div class="column custom-input <?= $errorMessage==""?"":"error" ?>">
+            <input class="password" name="password" type="password" maxlength="32" required/>
+            <label class="center">Password:</label>
+            <div><?= $errorMessage ?></div>
           </div>
-          <div class="login-submit-button-container">
-            <button class="login-submit-button gradient-custom" type="submit">LOG IN</button>
-          </div>
-          <div class="login-signin-link-container">
-            <a class="login-signin-link" href="../Signin">New user?</a>
-          </div>
-          <div class="login-copyright-container">
-            <div class="login-copyright">
-              Copyright &copy 2024. Do tf you want with it.
-            </div>
+          <div class="fillX center">
+            <button class="center gradient text button login-submit">
+              LOG IN
+            </button>
           </div>
         </form>
+        <div class="fillX center">
+          <a class="textSmall link" href="../Signin">New user?</a>
+        </div>
+        <div class="fillX center texttiny copyright">
+          Copyright &copy 2024. Do tf you want with it.
+        </div>
       </div>
-      <div class="login-background gradient-custom"></div>
+      <div class="grow gradient"></div>
     </div>
-
-
     <script>
-      var coll = document.getElementsByClassName("login-input");
+      var coll = document.getElementsByClassName("custom-input");
       var i;
 
       for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("change", function () {
-          if(this.value=="") this.classList.remove("active");
-          else this.classList.add("active")
+        coll[i].addEventListener("input", function () {
+          if (this.firstElementChild.value == "")
+            this.classList.remove("active");
+          else this.classList.add("active");
+          //console.log(this.firstElementChild.value);
         });
       }
     </script>

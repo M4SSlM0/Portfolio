@@ -1,75 +1,61 @@
 <html>
   <head>
-    <title>3Dproject</title>
-    <link rel="stylesheet" href="./home.css" />
-    <link rel="stylesheet" href="../Themes/theme-classic.css" />
+    <link rel="stylesheet" href="../Themes/theme.css" />
+    <link rel="stylesheet" href="../MyBS/misc.css" />
+    <link rel="stylesheet" href="../MyBS/custom-inputs.css">
+    <link rel="stylesheet" href="../Modals/modals.css">
+    <link rel="stylesheet" href="./navbar.css" />
     <link rel="stylesheet" href="../Profile/profile.css">
     <link rel="stylesheet" href="../MyProjects/myProjects.css">
-    <link rel="stylesheet" href="../Modals/customModals.css">
+    <link rel="stylesheet" href="../Search/search.css">
+    <link rel="stylesheet" href="../Profiles/profiles.css">
     <script src="../HTMX/htmx.min.js"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     </script>
   </head>
-  <body>
-    <?php
-      $dbHost = "localhost";
-      $dbUser = "root";
-      $dbPass = "";
-      $dbName = "3dprojectdb";
-      $conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
-    ?>
-    <div class="home-container">
-      <div class="home-navbar-container">
-        <div class="home-navbar-collapse" id="collapse">
-          <div class="home-navbar-profile-container">
-            Placeholder foto profilo
-          </div>
-          <div class="home-navbar-button-container">
-            <button class="home-navbar-button">Home</button>
-          </div>
-          <div class="home-navbar-button-container">
-            <button class="home-navbar-button">My Projects</button>
-          </div>
-          <div class="home-navbar-button-container">
-            <button class="home-navbar-button">Placeholder 3</button>
-          </div>
-          <div class="home-navbar-button-container">
-            <button class="home-navbar-button">Placeholder 4</button>
-          </div>
-          <div class="home-navbar-settings-container">
-            Placeholder impostazioni
-          </div>
-          <div class="home-navbar-disconnect-button-container">
-            <button class="home-navabr-diaconnect-button">
-              Disconnetti
-            </button>
-          </div>
+  <body class="fill">
+    <div class="fill" id="page">
+      <div hx-post="../Profile" hx-trigger="load" hx-swap="outerHTML" hx-target="this"></div>
+    </div>
+    <div class="fillY row navbar-container">
+      <div class="fillY column navbar" id="navbar">
+        <div class="fillX center">
+          <div class="center pfp gradient">Placeholder pfp</div>
         </div>
-        <div class="home-navbar-collapse-button-container">
-          <div class="home-nabvar-collapse-border-top"></div>
-          <button class="home-navbar-collapse-button">&#8660</button>
-          <div class="home-nabvar-collapse-border-bottom">
-          </div>
+        <div class="fillX column center navbar-buttons-container">
+            <button class="center text gradient button navbar-button" hx-post="../Profile" hx-trigger="click" hx-target="#page" hx-swap="innerHTML">Profile</button>
+            <button class="center text gradient button navbar-button" hx-post="../MyProjects" hx-trigger="click" hx-target="#page" hx-swap="innerHTML">MyProjects</button>
+            <button class="center text gradient button navbar-button" hx-post="../Search" hx-trigger="click" hx-target="#page" hx-swap="innerHTML">Home</button>
+            <button class="center text gradient button navbar-button" hx-post="../Profiles" hx-trigger="click" hx-target="#page" hx-swap="innerHTML">Ricerca utenti</button>
         </div>
+        <div class="fillX center">
+            <button class="center text button logout-button" hx-post="../Logout" hx-trigger="click" hx-target="none">Disconnect</button>
+        </div>
+        <div class="center gradient button navbar-settings">Placeholder settings</div>
       </div>
-      <div class="home-page">
-        <!--               \/   sostituisci con il percorso della pagina su cui devi lavorare piu' avanti implementero' il funzionamento della barra di navigazione-->
-        <div hx-post="../MyProjects" hx-trigger="load" hx-swap="outerHTML" hx-target="this"></div>
+      <div class="fillY grow column">
+        <div class="border-top"></div>
+        <button class="center pointer textSmall collapse-button" id="navbar-collpse">&#8660</button>
+        <div class="grow border-bottom"></div>
       </div>
     </div>
-
+    <?php
+      include "../Modals/customModal.html";
+      /*session_start();
+      session_destroy();*/
+    ?>
     
     <script>
-      var coll = document.getElementsByClassName("home-navbar-collapse-button");
+      var collapseButton = document.getElementById("navbar-collpse");
 
-        coll[0].addEventListener("click", function () {
+        collapseButton.addEventListener("click", function () {
           this.classList.toggle("active");
-          var content = document.getElementById("collapse");
-          if (content.style.maxWidth) {
-            content.style.maxWidth = null;
+          var content = document.getElementById("navbar");
+          if (content.style.width) {
+            content.style.width = null;
           } else {
-            content.style.maxWidth = 488 + "px";
+            content.style.width = 25.65 + "vw";
           }
         });
     </script>

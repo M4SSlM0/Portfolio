@@ -1,221 +1,30 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}
-body:not(.user-is-tabbing) button:focus,
-body:not(.user-is-tabbing) input:focus,
-body:not(.user-is-tabbing) select:focus,
-body:not(.user-is-tabbing) textarea:focus {
-  outline: none;
-}
-
-.container {
-  display: flex;
-  flex-direction: row;
-  height: 100%;
-  width: 100%;
-}
-
-.signin-form-container {
-  height: 100%;
-  min-width: 32rem;
-}
-
-.signin-form {
-  height: 100%;
-  width: 100%;
-  border-right: solid 3px var(--color-1);
-  background: var(--background);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.signin-form-logo-container {
-  width: 100%;
-  padding-top: 2rem;
-  margin-bottom: 1.5rem;
-  display: flex;
-  justify-content: center;
-}
-
-.signin-form-logo {
-  width: 6rem;
-  height: 6rem;
-  background: linear-gradient(
-    to right,
-    var(--gradient-custom-1),
-    var(--gradient-custom-2),
-    var(--gradient-custom-3),
-    var(--gradient-custom-4)
-  );
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.signin-title-container {
-  display: flex;
-  justify-content: center;
-}
-
-.signin-title {
-  font-size: 2.25rem;
-  font-weight: bolder;
-  margin-bottom: 1.5rem;
-  color: var(--text-color-1);
-}
-
-.signin-input-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.signin-input {
-  width: 25rem;
-  padding: 0.375rem;
-  border: solid 0.125rem var(--color-2);
-  border-radius: 0.5rem;
-  transition: all 0.2s ease-out;
-  background: var(--background);
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: var(--color-2);
-}
-
-.signin-input.error {
-  border-color: var(--error-color-1);
-}
-
-.signin-input:focus {
-  border-color: var(--color-3);
-}
-
-.signin-input-error {
-  position: relative;
-  height: 1rem;
-  display: flex;
-  bottom: 1.25rem;
-  left: 0.75rem;
-  color: var(--error-color-1);
-  font-size: 0.75rem;
-  font-weight: bolder;
-}
-
-.signin-input-container .signin-input ~ .signin-input-label {
-  position: relative;
-  width: fit-content;
-  left: 1rem;
-  bottom: 1.75rem;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  transition: all 0.2s ease-out;
-  color: var(--color-2);
+.background {
+  width: 35%;
+  border-right: solid 0.5vh var(--color-1);
   background: var(--background);
 }
 
-.signin-input.error ~ .signin-input-label {
-  color: var(--error-color-1);
+.logo {
+  height: 15vh;
+  width: 15vh;
+  margin-top: 5vh;
 }
 
-.signin-input-container .signin-input:focus ~ .signin-input-label {
-  color: var(--color-3);
-  bottom: 3.25rem;
+.title {
+  margin-top: 2.5vh;
 }
 
-.signin-input-container .signin-input.active ~ .signin-input-label {
-  bottom: 3.25rem;
+.login-form {
+  margin-top: 3vh;
 }
 
-.signin-submit-button-container {
-  display: flex;
-  justify-content: center;
+.login-submit {
+  width: 65%;
+  padding: 1vh;
+  border-radius: 2vh;
 }
 
-.signin-submit-button {
-  cursor: pointer;
-  border: none;
-  width: 25rem;
-  height: 2.5rem;
-  font-size: 1rem;
-  font-weight: bold;
-  color: var(--color-2);
-  border-radius: 0.5rem;
-  transition: all 0.5s;
-}
-
-.signin-submit-button:hover {
-  box-shadow: 0px 4px 16px var(--shadow-color-1);
-}
-
-.signin-login-link-container {
-  margin-top: 2.5rem;
-  display: flex;
-  justify-content: center;
-}
-
-.signin-login-link {
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: bold;
-  color: var(--color-2);
-}
-
-.signin-copyright-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 5rem;
-  margin-top: 2.5rem;
-  background: var(--color-4);
-}
-
-.signin-copyright {
-  font-size: 1rem;
-  font-weight: bold;
-  color: var(--text-color-1);
-}
-
-.signin-background {
-  flex-grow: 1;
-}
-
-/* gradient  */
-
-.gradient-custom {
-  /* fallback for old browsers */
-  background: #fccb90;
-
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(
-    to right,
-    var(--gradient-custom-1),
-    var(--gradient-custom-2),
-    var(--gradient-custom-3),
-    var(--gradient-custom-4)
-  );
-
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(
-    to right,
-    var(--gradient-custom-1),
-    var(--gradient-custom-2),
-    var(--gradient-custom-3),
-    var(--gradient-custom-4)
-  );
+.link {
+  margin-top: 4vh;
+  color: var(--text-color-2);
 }

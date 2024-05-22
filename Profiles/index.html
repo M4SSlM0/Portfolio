@@ -1,0 +1,72 @@
+<div class="fill row">
+  <div class="fillY column profiles-form-container">
+    <div class="fillX center textBig profiles-title">Cerca utenti</div>
+    <div class="fillX column profiles-form">
+      <div class="fillX center column profiles-input">
+        <div class="text profiles-form-label">Cerca per nome:</div>
+        <div class="FillX center custom-input-text">
+          <input
+            type="text"
+            name="search"
+            id="search"
+            placeholder="Cerca per nome..."
+          />
+        </div>
+      </div>
+      <div class="fillX center row profiles-form-row">
+        <div class="column">
+          <div class="center text profiles-form-label">Tipo utente:</div>
+          <div class="textSmall custom-select">
+            <select name="admin_filter" id="admin_filter">
+              <option value="">Tutti</option>
+              <option value="1">Superutenti</option>
+              <option value="0">Utenti normali</option>
+            </select>
+          </div>
+        </div>
+        <div class="column">
+          <div class="center text profiles-form-label">Ban:</div>
+          <div class="textSmall custom-select">
+            <select name="ban_filter" id="ban_filter">
+              <option value="">Tutti</option>
+              <option value="1">Bannati</option>
+              <option value="0">Non bannati</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="fillX center column profiles-input">
+        <div class="text profiles-form-label">Ordina per:</div>
+        <div class="textSmall custom-select">
+          <select name="order_by" id="order_by">
+            <option value="nome_asc" selected>Nome (A-Z)</option>
+            <option value="nome_desc">Nome (Z-A)</option>
+            <option value="progetti_totali">Progetti</option>
+            <option value="progetti_completati">Progetti Completati</option>
+          </select>
+        </div>
+      </div>
+      <div class="fillX center">
+        <button
+          class="center text gradient button profiles-form-submit"
+          hx-post="../Profiles/search.php"
+          hx-trigger="click"
+          hx-swap="innerHTML"
+          hx-target="#results"
+          hx-include="#search, #admin_filter, #ban_filter, #order_by"
+        >
+          CERCA
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="grow center gradient profiles-results" id="results">
+    <div
+      hx-post="../Profiles/search.php"
+      hx-trigger="load"
+      hx-swap="outerHTML"
+      hx-target="this"
+      hx-include="#search, #admin_filter, #ban_filter, #order_by"
+    ></div>
+  </div>
+</div>

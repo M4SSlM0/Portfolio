@@ -1,0 +1,119 @@
+.modal-background {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(64, 64, 64, 0.4);
+}
+
+.modal-container {
+  height: fit-content;
+  width: 67.5vh;
+  border: solid 0.6vh var(--color-2);
+  border-radius: 4vh;
+  background: var(--background);
+}
+
+.close-modal {
+  position: fixed;
+  left: 62.5vw;
+  top: 4.5vh;
+  height: 4vh;
+  width: 4vh;
+  border-radius: 1.5vh;
+  margin: 2vh;
+  background: var(--color-5);
+  color: var(--text-color-2);
+}
+
+.modal-title {
+  margin-top: 2vh;
+  color: var(--text-color-2);
+}
+
+.modal-project-image {
+  height: 48vh;
+  width: 64vh;
+  margin-top: 2vh;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.modal-project-description {
+  resize: none;
+  padding: 1.5vh;
+  background: transparent;
+  color: var(--text-color-1);
+}
+
+.drop-area {
+  padding: 8vh;
+  position: fixed;
+  top: 39vh;
+  left: 39vw;
+  z-index: 10;
+  border: solid 0.5vh transparent;
+  border-radius: 2vh;
+  color: var(--text-color-2);
+  transition: all 0.3s ease-in-out;
+}
+
+.drop-area.dragover {
+  color: var(--color-3);
+  border-color: var(--color-3);
+}
+
+.modal-input-container {
+  margin-top: 2vh;
+  margin-left: 4vh;
+  margin-right: 4vh;
+}
+
+.modal-label {
+  margin-bottom: 1vh;
+  color: var(--text-color-2);
+}
+
+.modal-submit {
+  padding: 1vh;
+  margin-top: 2vh;
+  margin-bottom: 3vh;
+  margin-left: 3vh;
+  margin-right: 3vh;
+  border-radius: 2vh;
+  color: var(--color-2);
+}
+
+.modal-description {
+  padding: 1.5vh;
+  color: var(--text-color-1);
+}
+
+.modal-profile-container {
+  padding: 2vh;
+}
+
+.modal-profile-pfp {
+  height: 20vh;
+  width: 20vh;
+  margin-top: 3vh;
+  border: solid 0.4vh var(--color-2);
+  border-radius: 10vh;
+}
+
+.modal-profile-edit-container {
+  padding-bottom: 4vh;
+}
+
+.modal-profile-edit-button {
+  padding: 0.75vh;
+  margin-left: 3vh;
+  border-radius: 1.5vh;
+}
+
+input::file-selector-button {
+  background: transparent;
+  border: none;
+}
