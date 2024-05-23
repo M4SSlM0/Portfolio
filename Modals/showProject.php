@@ -7,15 +7,17 @@
 
   session_start();
 
-  $project = $conn->query("SELECT * FROM progetti WHERE ID='".$_POST["project-id"]."'")->fetch_assoc();
+  $project = $conn->query("SELECT * FROM progetti JOIN utenti ON progetti.FK_ID_Utente = utenti.ID WHERE progetti.ID='".$_POST["project-id"]."'")->fetch_assoc();
   $userId = $_SESSION["userID"];
+  //var_dump($_POST["project-id"]);
+  //var_dump($project);
 ?>
 
 
 <div class="column modal-container">
-  <input type='hidden' value="<?= $project["ID"] ?>" id='project-id' name='project-id'>
+  <input type='hidden' value="<?= $_POST["project-id"] ?>" id='project-id' name='project-id'>
   <div class="fillX center">
-    <div class="fillX center textBig modal-title"><?= $userId == $project["FK_ID_Utente"] ? "Your project" : "Usernames' project" ?></div>
+    <div class="fillX center textBig modal-title"><?= $userId == $project["FK_ID_Utente"] ? "Your project" : $project["NomeUtente"]. "'s project" ?></div>
     <button class="text button close-modal" style="top: 5vh;" onclick="closeModal()">
       &times;
     </button>
@@ -78,7 +80,55 @@
         Delete
       </button>
     </div>
-    <?php } ?>
+    <?php }
+    else { ?>
+      <div class="row">
+        <?php
+          $result = $conn->query("SELECT * FROM mipiace WHERE FK_ID_Utente = '".$_SESSION["userID"]."' AND FK_ID_Progetto = '".$_POST["project-id"]."'");
+          $liked = mysqli_num_rows($result) != 0 ? true : false;
+        ?>
+        <div class="button modal-likes" id="like-button" style="background-image: url('../Images/Other/like<?= $liked ? "1" : "" ?>.png')"></div>
+        <?php
+          $result = $conn->query("SELECT * FROM mipiace WHERE FK_ID_Progetto = '".$_POST["project-id"]."'");
+          $likes = mysqli_num_rows($result);
+          //var_dump($result->fetch_assoc());
+        ?>
+        <div class="center" style="height: 5vh"><?= $likes ?></div>
+        <input type="hidden" name="like-state" id="like-state" value="<?= $liked ? "unlike" : "like" ?>">
+        <div hx-post="../Modals/likes.php" hx-trigger="click from:#like-button" hx-swap="none" hx-include="#project-id, #like-state"></div>
+      </div>
+    <?php 
+    } ?>
   </div>
 </div>
 <div id="debug"></div>
+<script>
+  var likeBtn = document.getElementById("like-button");
+  var projId = document.getElementById("project-id").value;
+  //console.log(projId);
+  likeBtn.addEventListener("click", () => {
+    //console.log(likeBtn.style.backgroundImage);
+    var counter =  Number(likeBtn.nextElementSibling.textContent);
+    //console.log(likeBtn.nextElementSibling.textContent);
+    console.log(counter);
+    if(likeBtn.style.backgroundImage === 'url("../Images/Other/like.png")'){
+      counter++;
+      likeBtn.style.backgroundImage = "url('../Images/Other/like1.png')";
+      likeBtn.nextElementSibling.textContent = (counter + "");
+      var likeBtn1 = document.getElementById("likes-id-"+projId);
+      likeBtn1.style.backgroundImage = "url('../Images/Other/like1.png')";
+      likeBtn1.nextElementSibling.textContent = (counter + "");
+      //console.log("like");
+    } 
+    else if(likeBtn.style.backgroundImage === 'url("../Images/Other/like1.png")') {
+      counter--;
+      likeBtn.style.backgroundImage = "url('../Images/Other/like.png')";
+      likeBtn.nextElementSibling.textContent = (counter + "");
+      var likeBtn1 = document.getElementById("likes-id-"+projId);
+      likeBtn1.style.backgroundImage = "url('../Images/Other/like.png')";
+      likeBtn1.nextElementSibling.textContent = (counter + "");
+      //console.log("unlike");
+    }
+    //console.log(counter);
+  });
+</script>

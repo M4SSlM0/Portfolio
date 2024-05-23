@@ -75,6 +75,7 @@
         for ($i = ($currentPage - 1) * $resultsPerPage; $i < $resultsPerPage * $currentPage; $i++) { 
             //var_dump($i);
             if(!isset($rows[$i])) break;
+            //var_dump($rows[$i]);
             ?>
                 <button class="button project" style="background-image: url(<?= $rows[$i][4] ?>)" hx-post="../Modals/showProject.php" hx-trigger="click" hx-target="#modal" hx-swap="innerHTML" hx-include="#project-id-<?= $rows[$i][0] ?>"><?= $rows[$i][3] ?>
                     <input type="hidden" id="project-id-<?= $rows[$i][0] ?>" name="project-id" value="<?= $rows[$i][0] ?>" />

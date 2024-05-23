@@ -5,6 +5,7 @@
     //var_dump($_POST);
     $type = "default"; 
     $description = "";
+    $username = "";
 
     if(!isset($_POST["load-page"])){
         if(isset($_POST["type"])) $type = $_POST["type"];
@@ -36,7 +37,7 @@
         $username = $_SESSION["search-last-search"]["username"];
         //var_dump($_SESSION["search-last-search"]);
 
-        $query = "SELECT * FROM progetti JOIN utenti ON progetti.FK_ID_Utente = utenti.ID WHERE Visibilita = 0 AND FK_ID_Utente != '".$_SESSION["userId"]."'";
+        $query = "SELECT * FROM progetti WHERE Visibilita = 0 AND FK_ID_Utente != '".$_SESSION["userID"]."'";
         $placeholders = "";
         $values = array();
 
@@ -99,10 +100,30 @@
         for ($i = ($currentPage - 1) * $resultsPerPage; $i < $resultsPerPage * $currentPage; $i++) { 
             //var_dump($i);
             if(!isset($rows[$i])) break;
+            //var_dump($rows[$i]);
             ?>
-                <button class="button project" style="background-image: url(<?= $rows[$i][4] ?>)" hx-post="../Modals/showProject.php" hx-trigger="click" hx-target="#modal" hx-swap="innerHTML" hx-include="#project-id-<?= $rows[$i][0] ?>"><?= $rows[$i][3] ?>
-                    <input type="hidden" id="project-id-<?= $rows[$i][0] ?>" name="project-id" value="<?= $rows[$i][0] ?>" />
-                </button>
+                <div class="button project" style="background-image: url(<?= $rows[$i][4] ?>)" hx-post="../Modals/showProject.php" hx-trigger="click" hx-target="#modal" hx-swap="innerHTML" hx-include="#project-id-<?= $rows[$i][0] ?>">
+                  <div class="fill column">
+                    <div class="grow">
+                      <div class="fillX center">
+                        <?= $rows[$i][3] ?>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <?php
+                        $result = $conn->query("SELECT * FROM mipiace WHERE FK_ID_Utente = '".$_SESSION["userID"]."' AND FK_ID_Progetto = '".$rows[$i][0]."'");
+                        $liked = mysqli_num_rows($result) != 0 ? true : false;
+                      ?>
+                      <div class="likes" id="likes-id-<?= $rows[$i][0] ?>" style="background-image: url('../Images/Other/like<?= $liked ? "1" : "" ?>.png')"></div>
+                      <?php
+                        $result = $conn->query("SELECT * FROM mipiace WHERE FK_ID_Progetto = '".$rows[$i][0]."'");
+                        $likes = mysqli_num_rows($result);
+                      ?>
+                      <div class="center"><?= $likes ?></div>
+                    </div>
+                  </div>
+                  <input type="hidden" id="project-id-<?= $rows[$i][0] ?>" name="project-id" value="<?= $rows[$i][0] ?>" />
+                </div>
 
             <?php
         }

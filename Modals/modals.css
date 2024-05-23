@@ -117,3 +117,14 @@ input::file-selector-button {
   background: transparent;
   border: none;
 }
+
+.modal-likes {
+  height: 5vh;
+  width: 5vh;
+  background: var(--color-7);
+  margin-left: 5vh;
+  margin-bottom: 2vh;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
