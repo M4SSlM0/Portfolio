@@ -46,5 +46,6 @@
     </div>
   </div>
   <div class="grow gradient search-results" id="search-results">
+    <div hx-post="../Search/search.php" hx-trigger="load" hx-swap="outerHTML"></div>
   </div>
 </div>
