@@ -30,7 +30,7 @@
             <button class="center text gradient button navbar-button" hx-post="../Profiles" hx-trigger="click" hx-target="#page" hx-swap="innerHTML">Ricerca utenti</button>
         </div>
         <div class="fillX center">
-            <button class="center text button logout-button" hx-post="../Logout" hx-trigger="click" hx-target="none">Disconnect</button>
+            <button class="center text button logout-button" hx-post="../Home/logout.php" hx-trigger="click" hx-swap="innerHTML">Disconnect</button>
         </div>
         <div class="center gradient button navbar-settings">Placeholder settings</div>
       </div>
