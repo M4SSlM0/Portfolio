@@ -12,7 +12,7 @@
     die("Connessione al database fallita: " . $conn->connect_error);
   }
 
-  $sql_ControllaAdmin = "SELECT Admin FROM utenti WHERE ID = '".$_SESSION["userId"]."'";
+  $sql_ControllaAdmin = "SELECT Admin FROM utenti WHERE ID = '".$_SESSION["userID"]."'";
   $exe_ControllaAdmin = $conn->query($sql_ControllaAdmin);
 
   if ($exe_ControllaAdmin->num_rows > 0) {

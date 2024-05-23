@@ -7,7 +7,7 @@
   $dbName = "3dprojectdb";
   $conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
 
-  $user = $conn->query("SELECT * FROM utenti WHERE ID = '".$_SESSION["userId"]."'")->fetch_assoc();
+  $user = $conn->query("SELECT * FROM utenti WHERE ID = '".$_SESSION["userID"]."'")->fetch_assoc();
 ?>
 <div class="modal-container">
   <div class="column modal-profile-edit-container">

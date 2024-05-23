@@ -28,11 +28,11 @@
             <button class="center text gradient button navbar-button" hx-post="../MyProjects" hx-trigger="click" hx-target="#page" hx-swap="innerHTML">MyProjects</button>
             <button class="center text gradient button navbar-button" hx-post="../Search" hx-trigger="click" hx-target="#page" hx-swap="innerHTML">Home</button>
             <button class="center text gradient button navbar-button" hx-post="../Profiles" hx-trigger="click" hx-target="#page" hx-swap="innerHTML">Ricerca utenti</button>
-        </div>
+          </div>
         <div class="fillX center">
             <button class="center text button logout-button" hx-post="../Home/logout.php" hx-trigger="click" hx-swap="innerHTML">Disconnect</button>
         </div>
-        <div class="center gradient button navbar-settings">Placeholder settings</div>
+        <!-- <div class="center gradient button navbar-settings">Placeholder settings</div> -->
       </div>
       <div class="fillY grow column">
         <div class="border-top"></div>

@@ -124,6 +124,7 @@ input::file-selector-button {
   background: var(--color-7);
   margin-left: 5vh;
   margin-bottom: 2vh;
+  margin-right: 1vh;
   background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: center;

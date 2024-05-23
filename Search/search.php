@@ -37,7 +37,7 @@
         $username = $_SESSION["search-last-search"]["username"];
         //var_dump($_SESSION["search-last-search"]);
 
-        $query = "SELECT * FROM progetti WHERE Visibilita = 0 AND FK_ID_Utente != '".$_SESSION["userID"]."'";
+        $query = "SELECT progetti.ID AS ID, utenti.ID AS userID, FK_ID_Tipo, Descrizione, Immagine, Status, progetti.ContatoreOre AS pOre FROM progetti JOIN utenti ON FK_ID_Utente = utenti.ID WHERE Visibilita = 0 AND FK_ID_Utente != '".$_SESSION["userID"]."'";
         $placeholders = "";
         $values = array();
 
