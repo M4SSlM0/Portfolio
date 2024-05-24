@@ -1,0 +1,13 @@
+Questo sito permette agli utenti di catalogere e condividere i propri progetti 3D. 
+Ogni progetto avrà una categoria (nel nostro caso Illustrazione, Animazione o Icona) uno
+  status che indicherà se il progetto è stato o meno portato a compimento e booleano
+  che indica se il progetto sarà o meno visibile dagli altri utenti.
+Ogni Utente si registrerà mediante Mail e potrà essere o utente normale opppure, in caso di 
+  promozione da parte di un altro admin, admin.
+In Profile l'utente potrà vedere alcune statistiche sui suoi progetti e modificare 
+  il proprio profilo.
+In MyProjects l'utente potrà visualizzare e modificare i suoi progetti e anche crearne di nuovi
+In Home l'utente potrà visualizzare tutti i progetti pubblicati dagli altri utenti
+In Ricerca utenti l'utente, se è un Admin, potrà visualizzare l'elenco completo degli account
+  iscritti, qui potrà rendere altri utenti admin oppure declassarli, potrà anche bannare l'utente
+  
