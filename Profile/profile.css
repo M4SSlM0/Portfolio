@@ -10,6 +10,9 @@
   margin-top: 5vh;
   border: solid 0.4vh var(--color-2);
   border-radius: 12.5vh;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .profile-picture-edit {

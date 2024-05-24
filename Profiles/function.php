@@ -53,8 +53,9 @@ $userClass = ($row["IsBan"] == 1 ? "ban" : ($row["Admin"] == 1 ? "admin" : "norm
 ?>
 <div class="row profiles-profile <?= $userClass ?>" id="user-profile-<?= $row["ID"] ?>">
   <div class="center column">
-    <img src="<?= $row["ImmagineProfilo"] ?> "class="center profiles-profile-pfp">
+    <img src="<?= $row["ImmagineProfilo"] == "" ? "../Images/ProfilePictures/default.jpeg" : $row["ImmagineProfilo"] ?>" class="center profiles-profile-pfp">
     <div class="center textSmall profiles-profile-username"><?php echo htmlspecialchars($row["NomeUtente"]) ?></div>
+    <div class="center textSmall profiles-profile-statistic"><?= $userClass ?></div>
   </div>
   <div class="column center">
     <div class="center textTiny profiles-profile-statistic">ProgettiTotali: <?= $row["NumProgetti"] ?></div>

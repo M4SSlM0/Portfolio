@@ -18,7 +18,7 @@
       </button>
     </div>
     <div class="fillX center">
-      <img src="<?= $user["ImmagineProfilo"] ?>" alt="" class="center modal-profile-pfp" id="modal-edit-profile-pfp">
+      <img src="<?= $user["ImmagineProfilo"] == "" ? "../Images/ProfilePictures/default.jpeg" : $user["ImmagineProfilo"] ?>" alt="" class="center modal-profile-pfp" id="modal-edit-profile-pfp">
     </div>
     <div class="fillX center column">
       <div class="center text modal-label">Cambia nome utente:</div>

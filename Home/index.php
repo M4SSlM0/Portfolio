@@ -14,6 +14,17 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     </script>
   </head>
+  <?php
+    session_start();
+
+    $dbHost = "localhost";
+    $dbUser = "root";
+    $dbPass = "";
+    $dbName = "3dprojectdb";
+    $conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
+
+    $user = $conn->query("SELECT * FROM utenti WHERE ID = '".$_SESSION["userID"]."'")->fetch_assoc();
+  ?> 
   <body class="fill">
     <div class="fill" id="page">
       <div hx-post="../Profile" hx-trigger="load" hx-swap="outerHTML" hx-target="this"></div>
@@ -21,14 +32,17 @@
     <div class="fillY row navbar-container">
       <div class="fillY column navbar" id="navbar">
         <div class="fillX center">
-          <div class="center pfp gradient">Placeholder pfp</div>
+          <div class="center pfp gradient" style="background-image: url(<?= $user["ImmagineProfilo"] == "" ? "../Images/ProfilePictures/default.jpeg" : $user["ImmagineProfilo"] ?>)"></div>
         </div>
         <div class="fillX column center navbar-buttons-container">
             <button class="center text gradient button navbar-button" hx-post="../Profile" hx-trigger="click" hx-target="#page" hx-swap="innerHTML">Profile</button>
             <button class="center text gradient button navbar-button" hx-post="../MyProjects" hx-trigger="click" hx-target="#page" hx-swap="innerHTML">MyProjects</button>
             <button class="center text gradient button navbar-button" hx-post="../Search" hx-trigger="click" hx-target="#page" hx-swap="innerHTML">Home</button>
+            <?php
+            if($user["Admin"] == 1){ ?>
             <button class="center text gradient button navbar-button" hx-post="../Profiles" hx-trigger="click" hx-target="#page" hx-swap="innerHTML">Ricerca utenti</button>
-          </div>
+            <?php } ?>
+            </div>
         <div class="fillX center">
             <button class="center text button logout-button" hx-post="../Home/logout.php" hx-trigger="click" hx-swap="innerHTML">Disconnect</button>
         </div>

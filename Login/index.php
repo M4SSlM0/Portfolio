@@ -38,6 +38,7 @@
               $stmt->bind_param("s",$_POST['email']);
               $stmt->execute();
               if(mysqli_num_rows($result=$stmt->get_result())==0) $errorMessage="*Email not registrated";
+              else if($result["IsBan"] == 1) $errorMessage="]This account has been banned";
               else 
               {
                 $isValid=true; 

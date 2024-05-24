@@ -17,6 +17,9 @@
   width: 20vh;
   margin-top: 3vh;
   border-radius: 10vh;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .navbar-buttons-container {

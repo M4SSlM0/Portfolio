@@ -31,7 +31,7 @@ if (isset($_POST['userId'])) {
             </button>
           </div>
           <div class="fillX center">
-            <img src="<?= $user["ImmagineProfilo"] ?>" alt="" class="center modal-profile-pfp">
+            <img src="<?= $user["ImmagineProfilo"] == "" ? "../Images/ProfilePictures/default.jpeg" : $user["ImmagineProfilo"] ?>" alt="" class="center modal-profile-pfp">
           </div>
           <div class="fillX center">
             <div class="center text modal-label">Nome utente: <?= $user["NomeUtente"] ?></div>

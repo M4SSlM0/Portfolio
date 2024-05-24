@@ -20,7 +20,7 @@
 <div class="fill row">
   <div class="fillY column profile-container">
     <div class="fillX center">
-      <div class="gradient profile-picture-container" style="background-image: url(<?= $_SESSION["ses_pfp"];?>)">
+      <div class="gradient profile-picture-container" style="background-image: url(<?= $_SESSION["ses_pfp"] == "" ? "../Images/ProfilePictures/default.jpeg" : $_SESSION["ses_pfp"] ?>)">
         <div class="fill center text button profile-picture-edit" hx-post="../Modals/profileEdit.php" hx-trigger="click" hx-target="#modal" hx-swap="innerHTML" id="edit-profile">
           <script>showModal(document.getElementById("edit-profile"), "click");</script>
           Click to edit
