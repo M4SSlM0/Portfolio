@@ -38,10 +38,13 @@
               $stmt->bind_param("s",$_POST['email']);
               $stmt->execute();
               if(mysqli_num_rows($result=$stmt->get_result())==0) $errorMessage="*Email not registrated";
-              else if($result["IsBan"] == 1) $errorMessage="]This account has been banned";
-              else 
-              {
-                $isValid=true; 
+              else {
+                $result = $result->fetch_assoc();
+                if($result["IsBan"] == 1) $errorMessage="*This account has been banned";
+                else 
+                {
+                  $isValid=true; 
+                }
               }
             }
           ?>
@@ -55,10 +58,10 @@
               if(!isset($_POST["password"])) $errorMessage="";
               else if($_POST["password"]=="") $errorMessage="*Password cannot be empty";
               else if($isValid){
-                if((($row = $result->fetch_assoc())['Password'] != md5($_POST['password']))) $errorMessage="*Wrong email or password";
+                if(($result)['Password'] != md5($_POST['password'])) $errorMessage="*Wrong email or password";
                 else{
                   $_SESSION["ses_mail"] = $_POST['email'];
-                  $_SESSION["userID"]=$row["ID"];
+                  $_SESSION["userID"]=$result["ID"];
                   //var_dump($row["ID"]);
                   header("Location: ../Home");
                   exit;
