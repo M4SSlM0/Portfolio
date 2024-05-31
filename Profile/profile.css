@@ -102,3 +102,7 @@
   height: 253px;
   width: 506px;
 }
+
+.chart-title {
+  color: var(--text-color-2);
+}

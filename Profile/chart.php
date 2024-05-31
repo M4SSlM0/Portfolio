@@ -15,22 +15,28 @@ $sql_OttieniUsername = "SELECT NomeUtente FROM utenti WHERE email = '".$_SESSION
 $exe_OttieniUsername = $conn->query($sql_OttieniUsername);
 
 if ($exe_OttieniUsername->num_rows > 0) {
-    $row = $exe_OttieniUsername->fetch_assoc();
-    $_SESSION["ses_user"] = $row["NomeUtente"];
-}
-
-if ($_POST["projects-type"] == "All") {
-    $_sql_CercaNumeroProgetti1 = "";
-} else {
-    $_sql_CercaNumeroProgetti1 = "AND p.FK_ID_Tipo = ".$_POST["projects-type"];
+  $row = $exe_OttieniUsername->fetch_assoc();
+  $_SESSION["ses_user"] = $row["NomeUtente"];
 }
 
 $sql_CercaNumeroProgetti = "SELECT COUNT(p.ID) as NumID, 
                                    SUM(p.ContatoreOre) as NumOre
                             FROM progetti p JOIN utenti u ON p.FK_ID_Utente = u.ID 
                             WHERE email = '".$_SESSION["ses_mail"]."'";
+                            
+
+if ($_POST["projects-type"] != "All") {
+  $sql_CercaNumeroProgetti .= " AND p.FK_ID_Tipo = '".$_POST["projects-type"]."'";
+}
+
+if ($_POST["projects-state"] != "All") {
+  $sql_CercaNumeroProgetti .= " AND p.Status = '".$_POST["projects-state"]."'";
+}
+
+//var_dump($sql_CercaNumeroProgetti);
 
 $exe_CercaNumeroProgetti = $conn->query($sql_CercaNumeroProgetti);
+
 
 if (!$exe_CercaNumeroProgetti) { 
     echo "Errore nella query: " . $conn->error;
@@ -53,6 +59,11 @@ $sql_CercaStatoProgetti1 = "SELECT SUM(CASE WHEN p.Status = 'InCorso' THEN 1 ELS
                             JOIN utenti u ON p.FK_ID_Utente = u.ID 
                             WHERE u.email = '".$_SESSION['ses_mail']."'";
 
+if ($_POST["projects-type"] != "All") {
+  $sql_CercaStatoProgetti1 .= " AND p.FK_ID_Tipo = ".$_POST["projects-type"];
+}
+//var_dump($sql_CercaStatoProgetti1);
+
 $exe_CercaStatoProgetti1  = $conn->query($sql_CercaStatoProgetti1);
 
 if (!$exe_CercaStatoProgetti1) { 
@@ -70,39 +81,6 @@ if (!$exe_CercaStatoProgetti1) {
     }
 }
 
-if ($_POST["projects-state"] == "All") {
-    $_sql_CercaNumeroProgetti2 = "";
-} else if ($_POST["projects-state"] == "InCorso") {
-    $_sql_CercaNumeroProgetti2 = "AND status = 'InCorso'";
-} else if ($_POST["projects-state"] == "InPausa") {
-    $_sql_CercaNumeroProgetti2 = "AND status = 'InPausa'";
-} else if ($_POST["projects-state"] == "Finito") {
-    $_sql_CercaNumeroProgetti2 = "AND status = 'Finito'";
-} else if ($_POST["projects-state"] == "Scartato") {
-    $_sql_CercaNumeroProgetti2 = "AND status = 'Scartato'";
-}
-
-$sql_CercaNumeroProgetti2 = "SELECT COUNT(p.ID) as NumID, 
-                             SUM(p.ContatoreOre) as NumOre
-                             FROM progetti p 
-                             JOIN utenti u ON p.FK_ID_Utente = u.ID 
-                             WHERE email = '".$_SESSION["ses_mail"]."' ".$_sql_CercaNumeroProgetti2;
-
-$exe_CercaNumeroProgetti2 = $conn->query($sql_CercaNumeroProgetti2);  
-
-if (!$exe_CercaNumeroProgetti2) { 
-    echo "Errore nella query: " . $conn->error;
-} else {
-    if ($exe_CercaNumeroProgetti2->num_rows > 0) {
-        while ($row = $exe_CercaNumeroProgetti2->fetch_assoc()) {
-            $NumeroProgetti = $row['NumID']; 
-            $NumeroOre = $row['NumOre'];
-        }
-    } else { 
-        echo "Nessun risultato trovato per l'email " . $_SESSION["ses_mail"]; 
-    }
-}
-
 $sql_CercaTipi = "SELECT * FROM tipi";
 $exe_CercaTipi = $conn->query($sql_CercaTipi);
 $Tipi = array();
@@ -114,7 +92,11 @@ if ($exe_CercaTipi->num_rows > 0) {
         $sql_CercaStatoProgetti2 = "SELECT COUNT(p.ID) AS sium
                                     FROM progetti p 
                                     JOIN utenti u ON p.FK_ID_Utente = u.ID 
-                                    WHERE u.email = '".$_SESSION['ses_mail']."' AND p.FK_ID_Tipo = ".$row["ID"]." ".$_sql_CercaNumeroProgetti2;
+                                    WHERE u.email = '".$_SESSION['ses_mail']."' AND p.FK_ID_Tipo = '".$row["ID"]."'";
+
+        if ($_POST["projects-state"] != "All") {
+          $sql_CercaStatoProgetti2 .= " AND p.Status = '".$_POST["projects-state"]."'";
+        }
 
         $exe_CercaStatoProgetti2 = $conn->query($sql_CercaStatoProgetti2);              
 
@@ -161,15 +143,16 @@ $conn->close();
     <div class="center text gradient profile-chart-value"><?= $NumeroProgetti?> Progetti</div>
     <div class="center text gradient profile-chart-value"><?= $NumeroOre?> Ore</div>
   </div>
+  <div class="FillX center textTiny chart-title">States:</div>
   <div class="center">
     <div class="center profile-chart">
-      <canvas id="myChart1"></canvas>
+      <canvas id="myChart2"></canvas>
       <script>
-        var xValues = ["In corso", "In pausa", "Finito", "Scartato"];
-        var yValues = [<?php echo $NumeroInCorso ?>, <?php echo $NumeroInPausa ?>, <?php echo $NumeroScartati?>, <?php echo $NumeroFiniti ?>];
+        var xValues = <?php echo json_encode($Tipi, JSON_HEX_TAG); ?>;
+        var yValues = <?php echo json_encode($NumeroPerTipo, JSON_HEX_TAG); ?>;
         var barColors = ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9"];
 
-        var chart = new Chart("myChart1", {
+        var chart = new Chart("myChart2", {
           type: "pie",
           data: {
             labels: xValues,
@@ -199,15 +182,16 @@ $conn->close();
       </script>
     </div>
   </div>
+  <div class="FillX center textTiny chart-title">Types:</div>
   <div class="center">
     <div class="center profile-chart">
-      <canvas id="myChart2"></canvas>
+      <canvas id="myChart1"></canvas>
       <script>
-        var xValues = <?php echo json_encode($Tipi, JSON_HEX_TAG); ?>;
-        var yValues = <?php echo json_encode($NumeroPerTipo, JSON_HEX_TAG); ?>;
+        var xValues = ["In corso", "In pausa", "Finito", "Scartato"];
+        var yValues = [<?php echo $NumeroInCorso ?>, <?php echo $NumeroInPausa ?>, <?php echo $NumeroScartati?>, <?php echo $NumeroFiniti ?>];
         var barColors = ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9"];
 
-        var chart = new Chart("myChart2", {
+        var chart = new Chart("myChart1", {
           type: "pie",
           data: {
             labels: xValues,

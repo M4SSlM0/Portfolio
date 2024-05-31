@@ -86,11 +86,14 @@
         <div class="textSmall profile-stats-form-label">Project type:</div>
         <div class="textSmall custom-select">
           <select name="projects-type" id="projects-type">
-            <option value="">Illustrazione</option>
-            <option value="">Icona</option>
-            <option value="">Animazione</option>
-            <option value="">Asset</option>
-            <option value="" selected>All</option>
+            <?php
+              $results = $conn->query("SELECT * FROM tipi");
+              while($row = $results->fetch_array(MYSQLI_ASSOC)){?>
+                <option value="<?= $row["ID"] ?>"><?= $row["Nome"] ?></option>
+              <?php
+              }
+            ?>
+            <option value="All" selected>All</option>
           </select>
         </div>
       </div>
